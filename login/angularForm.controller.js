@@ -25,7 +25,7 @@ app.controller('angularFormController',function($scope, $http, $interval,$timeou
 app.controller('loginController',function($scope,dataFactory) {
      $scope.Obj = {'errorMessage':'','alertError':false};
 $scope.login= function(data) {
-        dataFactory.loginData(data)
+        dataFactory.loginUser(data)
         .success(function(response) {
             $scope.Obj={}; 
             $scope.userForm.$setPristine();

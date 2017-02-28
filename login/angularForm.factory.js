@@ -13,7 +13,7 @@ app.factory('dataFactory', function($http){
 
                 })           
         },
-        loginData:function(data){
+        loginUser:function(data){
            return $http.post('http://144.76.34.244:3015/user/login', data)
            .success(function(response) {
            	console.log("response>>>>", response);
