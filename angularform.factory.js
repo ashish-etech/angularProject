@@ -14,6 +14,23 @@ app.factory('getdatafactory', function($http, configuration) {
                     return error;
 
                 })
+        },
+        login: function(loginData) {
+            return $http({
+                    method: 'POST',
+                    url: (configuration.apihost + '/user/login'),
+                    data: loginData,
+                    header: { 'Content - Type': 'text/html' }
+                })
+                .success(function(response) {
+
+                    return response;
+                })
+                .error(function(error) {
+                    return error;
+
+                })
+
         }
     }
 });
