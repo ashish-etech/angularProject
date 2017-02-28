@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="angularForm" >
+<head>
+    <title>Login page</title>
+    <!-- bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <!-- angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- Js -->
+    <script type="text/javascript" src="angularForm.controller.js"></script>
+    <script type="text/javascript" src="angularForm.factory.js"></script>
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="angularForm.stylesheet.css">
+          
+</head>
+<body  ng-controller="loginController"">
+<div class="row">
+    <div id="mainDiv" class="col-md-4" align="center" style="border: 1px solid">
+    <h4 class="header">Login Page</h4>
+        <form name="userForm" ng-submit="login(Obj)" novalidate >
+            
+            <div class="form-group" align="left" ng-class="{'has-error':userForm.user_name.$invalid && !userForm.user_name.$pristine}">
+                <label for="userame">Username:</label>
+                <input type="text" class="form-control" name="user_name" ng-model="Obj.user_name" placeholder="Enter UserName" ng-change="Onchange()" autocomplete="off" required/>
+                <p ng-show="userForm.user_name.$invalid && !userForm.user_name.$pristine" class="help-block"> please enter valid Username</p>
+            </div>
+            <div class="form-group" align="left" ng-class="{'has-error':userForm.password.$invalid && !userForm.password.$pristine}">
+                <label for="password"> Password:</label>
+                <input type="password" class="form-control" name="password" ng-model="Obj.password"  placeholder="Enter password" ng-change="Onchange()" autocomplete="off" required />
+                <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">please enter password.</p>
+            </div>
+            
+            
+            <button type="submit" class="btn btn-success"  >Login</button>
+        </form><br>
+        <div ng-show="Obj.alertSuccess"  id="alert" class="alert alert-success" >Data Updated Successfully</div>
+        <div ng-show="Obj.validationFailed"  id="alert" class="alert alert-danger" >invalid username or password</div>
+        <div ng-show="Obj.alertError"  id="alert" class="alert alert-danger" >{{errorMessage}}</div>
+    </div>
+ </div>   
+</body>
+</html>

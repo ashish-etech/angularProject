@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="angularForm" >
+<head>
+    <title>Assignment 10</title>
+    <!-- bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <!-- angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- Js -->
+    <script type="text/javascript" src="angularForm.controller.js"></script>
+    <script type="text/javascript" src="angularForm.factory.js"></script>
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="angularForm.stylesheet.css">
+          
+</head>
+<body  ng-controller="angularFormController">
+<div class="row">
+    <div id="mainDiv" class="col-md-3">
+    <h4 class="header">Registration using $http</h4>
+        <form name="userForm" ng-submit="submitForm(Obj)" novalidate>
+            <div class="form-group" align="left" ng-class="{'has-error':userForm.first_name.$invalid && !userForm.first_name.$pristine}">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" name="first_name" ng-model="Obj.first_name" placeholder="Enter First Name" ng-change="Onchange()" autocomplete="off" required />
+                <p ng-show="userForm.first_name.$invalid && !userForm.first_name.$pristine" class="help-block"> Please enter First Name</p>
+            </div>
+            <div class="form-group" align="left" ng-class="{'has-error':userForm.last_name.$invalid && !userForm.last_name.$pristine}">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" name="last_name" ng-model="Obj.last_name" placeholder="Enter Last Name" ng-change="Onchange()" autocomplete="off" required />
+                <p ng-show="userForm.last_name.$invalid && !userForm.last_name.$pristine" class="help-block"> please enter Last Name</p>
+            </div>
+            <div class="form-group" align="left" ng-class="{'has-error':userForm.user_name.$invalid && !userForm.user_name.$pristine}">
+                <label for="userame">Username:</label>
+                <input type="text" class="form-control" name="user_name" ng-model="Obj.user_name" placeholder="Enter UserName" ng-change="Onchange()" autocomplete="off" required/>
+                <p ng-show="userForm.user_name.$invalid && !userForm.user_name.$pristine" class="help-block"> please enter Username</p>
+            </div>
+            <div class="form-group" align="left" ng-class="{'has-error':userForm.password.$invalid && !userForm.password.$pristine}">
+                <label for="password"> Password:</label>
+                <input type="password" class="form-control" name="password" ng-model="Obj.password"  placeholder="Enter password" ng-change="Onchange()" autocomplete="off" required />
+                <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">please enter password.</p>
+            </div>
+            <div class="form-group" align="left" ng-class="{'has-error':userForm.confirm_password.$invalid && !userForm.confirm_password.$pristine}">
+                <label for="password"> Confirm Password:</label>
+                <input type="password" class="form-control" name="confirm_password" ng-model="Obj.confirm_password"  placeholder="Confirm password" ng-pattern="Obj.password" ng-change="Onchange()" autocomplete="off" required />
+                <p ng-show="userForm.confirm_password.$invalid && !userForm.confirm_password.$pristine" class="help-block">password is not matching.</p>
+               
+            </div>
+            <div class="form-group" align="left" ng-class="{'has-error':userForm.email.$invalid && !userForm.email.$pristine}">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control"  name="email" ng-model="Obj.email" placeholder="Enter Email" ng-change="Onchange()" ng-pattern="emailFormat" autocomplete="off" required/>
+                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">please enter valid email!.</p>
+            </div>
+            
+            <button type="submit" class="btn btn-success"  >Submit</button>
+        </form><br>
+         <div ng-show="Obj.alertSuccess"  id="alert" class="alert alert-success" >Data Updated Successfully</div>
+        <div ng-show="Obj.validationFailed"  id="alert" class="alert alert-danger" >All Fields Required</div>
+        <div ng-show="Obj.alertError"  id="alert" class="alert alert-danger" >Connection error</div>
+    </div>
+ </div>   
+</body>
+</html>
