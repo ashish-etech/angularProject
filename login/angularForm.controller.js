@@ -1,34 +1,35 @@
 var app = angular.module("angularForm", []);
-app.controller('angularFormController',function($scope, $http, $interval,$timeout, dataFactory) {
-    $scope.Obj = {'alertSuccess':false, 'validationFailed':false,'alertPass':false,'errorMessage':''};
-    $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+app.controller('registerCtrl',function($scope, $http, $interval,$timeout, dataFactory) {
+    $scope.user = {'alertsuccess':false, 'validationFailed':false,'alertmsg':false,'alerterror':false};
+    
 // sending data to database
-    $scope.submitForm = function(data) {
+    $scope.submit = function(data) {
         dataFactory.addData(data)
             .success(function(response) {
-                $scope.alertSuccess = true;
+                $scope.alertsuccess = true;
                 $timeout(function() {
-                     $scope.Obj={}; 
-                $scope.userForm.$setPristine();
+                $scope.user={}; 
+                $scope.alertsuccess = false;
+                $scope.form.$setPristine();
                 }, 3000)
             })
-            .error(function(response) {
-                $scope.alertError = true;
-                $scope.errorMessage = error;
+            .error(function(error) {
+                $scope.alerterror = true;
+                $scope.errmessage = error;
             })
     }
     $scope.Onchange=function(){
-        $scope.Obj.alertSuccess = false;
+        $scope.Obj.alertsuccess = false;
         $scope.Obj.validationFailed = false;
     };
 });
-app.controller('loginController',function($scope,dataFactory) {
-     $scope.Obj = {'errorMessage':'','alertError':false};
+app.controller('loginCtrl',function($scope,dataFactory) {
+     $scope.user = {'errorMessage':'','alertError':false};
 $scope.login= function(data) {
-        dataFactory.loginUser(data)
+        dataFactory.loginData(data)
         .success(function(response) {
-            $scope.Obj={}; 
-            $scope.userForm.$setPristine();
+            $scope.user={}; 
+            $scope.form.$setPristine();
         })
         .error(function(error) {
             $scope.alertError = true;
