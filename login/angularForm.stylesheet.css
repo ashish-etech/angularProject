@@ -1,24 +1,16 @@
-#mainDiv{
-    padding-top: 30px;
-    padding-left: 5%;
-    padding-right:5%;
-    background-color: skyblue;
-    color: black;
-    
-}
-.header{
-    font-weight: bold;
-    color: brown;
-    text-align: center;
-    text-decoration:underline;
-}
-.col-sm-6 {
+
+.col-md-3 {
     background-color: #00BCD4;
     padding-bottom: 20px;
+    margin-top: 20px;
 }
 
 h3 {
     padding-top: 2px;
     padding-bottom: 10px;
     font-size: 20px;
+}
+
+.padding {
+    padding-top: 10px !important;
 }

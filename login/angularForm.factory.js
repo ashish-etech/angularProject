@@ -1,8 +1,8 @@
 var app=angular.module('angularForm');  
-app.factory('dataFactory', function($http){
+app.factory('dataFactory', function($http, configuration){
     return{
         addData:function(newdata){
-           return $http.post('http://144.76.34.244:3015/user/register', newdata)
+           return $http.post(configuration.apihost + '/user/register', newdata)
            .success(function(response) {
            	console.log("response>>>>", response);
                     return response;
@@ -14,7 +14,7 @@ app.factory('dataFactory', function($http){
                 })           
         },
         loginData:function(data){
-           return $http.post('http://144.76.34.244:3015/user/login', data)
+           return $http.post(configuration.apihost + '/user/login', data)
            .success(function(response) {
            	console.log("response>>>>", response);
                     return response;
