@@ -1,5 +1,5 @@
-var app = angular.module("angularForm", []);
-app.controller("registerCtrl", function($scope, $http, getdatafactory, $timeout) {
+var app = angular.module("angularForm");
+app.controller("registrationController", function($scope, $http, getdatafactory, $timeout) {
     $scope.alertsuccess = false;
     $scope.alerterror = false;
     $scope.errmsg = '';
@@ -21,21 +21,5 @@ app.controller("registerCtrl", function($scope, $http, getdatafactory, $timeout)
                 $scope.alerterror = true;
                 $scope.errmsg = error;
             })
-    }
-});
-app.controller("loginCtrl", function($scope, $http, getdatafactory, $timeout) {
-    $scope.alertsuccess1 = false;
-    $scope.login = function(data) {
-        getdatafactory.login(data)
-            .success(function(response) {
-                $scope.alertsuccess1 = true;
-                $scope.successmsg = response.messgae;
-                $scope.form.$setPristine();
-                $scope.user = {};
-            })
-            .error(function(error) {
-
-            })
-
     }
 })
