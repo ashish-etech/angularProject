@@ -1,4 +1,5 @@
-app.factory('getdatafactory', function($http, configuration) {
+var app = angular.module("angularForm");
+app.factory('getDataFactory', function($http, configuration) {
     return {
         sendData: function(data) {
             return $http({
