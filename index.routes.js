@@ -6,13 +6,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('register', {
             url: '/register',
-            templateUrl: 'Components//Registration/registrationform.html',
+            templateUrl: 'components/registration/registrationForm.html',
             controller: 'registrationController',
         })
 
     .state('login', {
         url: '/login',
-        templateUrl: 'Components/Login/login.html',
+        templateUrl: 'components/login/loginForm.html',
         controller: 'loginController',
     })
 

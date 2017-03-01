@@ -1,8 +1,8 @@
 var app = angular.module("angularForm");
-app.controller("loginController", function($scope, $http, getdatafactory, $timeout, $localStorage) {
+app.controller("loginController", function($scope, $http, getDataFactory, $timeout, $localStorage) {
     $scope.alertloginsuccess = false;
     $scope.login = function(data) {
-        getdatafactory.login(data)
+        getDataFactory.login(data)
             .success(function(response) {
                 $localStorage.token = response.access_token
                 $scope.alertloginsuccess = true;
