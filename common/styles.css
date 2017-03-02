@@ -22,36 +22,46 @@ h3 {
     padding-bottom: 20px;
 }
 
+table,td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+}
 .odd {
-    text-transform: uppercase;
-    background-color: #00BCD4;
-    color: rgb(0, 0, 0);
+    /*text-transform: uppercase;*/
+    border-collapse: collapse;  
+    border: 1px solid grey;
+}
+.even{
+    background-color:  #E47F72;
+    color: white;
+    border-collapse: collapse;  
+    border: 1px solid grey;
+}
+th{
+    color: black;
+    font-weight: bold;
+    border: 1px solid grey;
+    border-collapse: collapse;  
 }
 
-.even {
-    background-color: #E47F72;
-    color: white;
-}
 
 thead {
     background-color: #dff0d8;
     cursor: pointer;
 }
-
-.arrow-down {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid black;
-    display: inline-block;
+.notReverse:after {
+    content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE}
+.reverse:after {
+    content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+}
+#searchDiv{
+    float: right;
+}
+#btnDiv{
+    float: left;
 }
 
-.arrow-up {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 10px solid black;
-    display: inline-block;
+#notFound{
+    text-align: center;
+    font-size: 20px;
 }

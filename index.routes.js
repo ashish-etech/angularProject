@@ -1,4 +1,4 @@
-var app = angular.module("angularForm", ['ui.router', 'ngStorage']);
+var app = angular.module("angularForm", ['ui.router', 'ngStorage', 'angularUtils.directives.dirPagination']);
 app.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/login');
@@ -9,11 +9,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'components/registration/registrationForm.html',
             controller: 'registrationController',
         })
-
-    .state('login', {
-        url: '/login',
-        templateUrl: 'components/login/loginForm.html',
-        controller: 'loginController',
-    })
-
+        .state('login', {
+            url: '/login',
+            templateUrl: 'components/login/loginForm.html',
+            controller: 'loginController',
+        })
+        .state('fetch', {
+            url: '/fetch',
+            templateUrl: 'components/fetch/fetch.html',
+            controller: 'fetchDataController',
+        })
 })
