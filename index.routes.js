@@ -15,5 +15,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'components/login/loginForm.html',
         controller: 'loginController',
     })
-
+    .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'components/fetch/dashboard.html',
+        controller: 'fetchController',
+    })
 })
