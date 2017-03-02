@@ -1,5 +1,5 @@
 var app = angular.module("angularForm");
-app.controller("registrationController", function($scope, $http, getDataFactory, $timeout) {
+app.controller("registrationController", function($scope, $http, getDataFactory, $timeout, $state) {
     $scope.alertsuccess = false;
     $scope.alerterror = false;
     $scope.errmsg = '';
@@ -7,7 +7,8 @@ app.controller("registrationController", function($scope, $http, getDataFactory,
         $scope.alerterror = false;
     }
     $scope.submit = function(data) {
-        getDataFactory.sendData(data)
+        url = "/user/register";
+        getDataFactory.sendData(data, url)
             .success(function(response) {
                 $scope.alertsuccess = true;
 
@@ -15,6 +16,7 @@ app.controller("registrationController", function($scope, $http, getDataFactory,
                 $timeout(function() {
                     $scope.alertsuccess = false;
                     $scope.user = {};
+                    $state.go('login');
                 }, 3000)
             })
             .error(function(error) {
