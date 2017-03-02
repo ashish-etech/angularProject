@@ -1,10 +1,10 @@
 var app = angular.module("angularForm");
 app.factory('getDataFactory', function($http, configuration) {
     return {
-        sendData: function(data) {
+        sendData: function(data, api) {
             return $http({
                     method: 'POST',
-                    url: (configuration.apihost + '/user/register'),
+                    url: (configuration.apihost + api),
                     data: data,
                     header: { 'Content - Type': 'text/html' }
                 })
@@ -16,10 +16,10 @@ app.factory('getDataFactory', function($http, configuration) {
 
                 })
         },
-        login: function(loginData) {
+        login: function(loginData, api) {
             return $http({
                     method: 'POST',
-                    url: (configuration.apihost + '/user/login'),
+                    url: (configuration.apihost + api),
                     data: loginData,
                     header: { 'Content - Type': 'text/html' }
                 })
@@ -32,6 +32,24 @@ app.factory('getDataFactory', function($http, configuration) {
 
                 })
 
+        },
+
+        fetch: function(api) {
+            return $http({
+                    method: 'GET',
+                    url: (configuration.apihost + api),
+
+                })
+                .success(function(response) {
+
+                    return response;
+                })
+                .error(function(error) {
+                    return error;
+
+                })
+
         }
     }
+
 });

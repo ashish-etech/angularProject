@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="container contstyle">
+        <h2>Registered User Data</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="employee in employees|itemsPerPage:10" current-page="currentPage" total-items="count" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td>{{employee.firstname}}</td>
+                    <td>{{employee.lastname}}</td>
+                    <td>{{employee.email}}</td>
+                    <td>{{employee.username}}</td>
+                </tr>
+                <tr ng-show="alerterror" class="alert alert-danger" style="font-size:20px;">
+                    <th colspan="12">
+                        <center>{{tableerrmsg}}</center>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <center>
+            <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)">
+            </dir-pagination-controls>
+        </center>
+    </div>
+</div>
