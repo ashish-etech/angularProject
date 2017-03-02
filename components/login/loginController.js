@@ -1,9 +1,10 @@
 var app = angular.module("angularForm");
 app.controller("loginController", function($scope, $http, getDataFactory, $timeout, $localStorage, $state) {
     $scope.alertloginsuccess = false;
+    $scope.alertLoginError = false;
     $scope.login = function(data) {
         url = "/user/login";
-        getDataFactory.login(data, url)
+        getDataFactory.sendData(data, url)
             .success(function(response) {
                 $localStorage.token = response.token;
                 $scope.alertloginsuccess = true;
@@ -15,7 +16,12 @@ app.controller("loginController", function($scope, $http, getDataFactory, $timeo
             })
             .error(function(error) {
 
+                $scope.alertLoginError = true;
+                $scope.loginErrrMsg = error;
             })
 
+    }
+    $scope.change = function() {
+        $scope.alertLoginError = false;
     }
 })

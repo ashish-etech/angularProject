@@ -3,6 +3,7 @@
         <center>
             <h3>User Login</h3></center>
         <div ng-show="alertloginsuccess" class="alert alert-success">{{successmsg }}</div>
+        <div ng-show="alertLoginError" class="alert alert-danger"> {{loginErrrMsg}}</div>
         <form name="form" ng-submit="login(user)" novalidate>
             <div class="form-group" ng-class="{ 'has-error' : form.user_name.$invalid && !form.user_name.$pristine }">
                 <label for="firstName">User Name</label>

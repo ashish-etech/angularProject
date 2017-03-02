@@ -16,24 +16,6 @@ app.factory('getDataFactory', function($http, configuration) {
 
                 })
         },
-        login: function(loginData, api) {
-            return $http({
-                    method: 'POST',
-                    url: (configuration.apihost + api),
-                    data: loginData,
-                    header: { 'Content - Type': 'text/html' }
-                })
-                .success(function(response) {
-
-                    return response;
-                })
-                .error(function(error) {
-                    return error;
-
-                })
-
-        },
-
         fetch: function(api) {
             return $http({
                     method: 'GET',
