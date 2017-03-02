@@ -1,0 +1,35 @@
+<div class="row" >
+    <div id="mainDiv"  class="col-sm-10" >
+        <!-- body of table Search-->
+        <div class="col-md-3" id="searchDiv">
+            <input type="text" class="form-control" ng-model="search" placeholder="Search Here" ng-change="change()"/><br>
+        </div>
+        <div class="col-md-12" >
+        <table class="table">
+            <tr class="success">
+                <th ng-click="sort('firstname')">First Name 
+                    <span ng-show="myOrderBy === 'firstname'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
+                </th>
+                <th ng-click="sort('lastname')">Last Name 
+                    <span ng-show="myOrderBy === 'lastname'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
+                </th>
+                <th ng-click="sort('username')">Username
+                    <span ng-show="myOrderBy === 'username'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
+                </th>
+                <th ng-click="sort('email')">Email 
+                    <span ng-show="myOrderBy === 'email'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
+                </th>                
+            </tr>
+            <tr ng-repeat="user in list | filter : search " ng-class="($index+1) % 2 == 0? 'even' : 'odd'" ng-init="parseId(Obj)">
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>               
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+            </tr>
+             <tr ng-show="(user |filter:search).length == 0" >
+                <td colspan="4" id="notFound" class="alert alert-danger"><strong>Sorry !!</strong> Data Not Found</td>
+            </tr>
+        </table>
+        </div>        
+    </div>
+</div>
