@@ -12,15 +12,13 @@ app.controller("loginController", function($scope, $http, getDataFactory, $timeo
                 $scope.form.$setPristine();
                 $scope.user = {};
                 $state.go('fetch');
-
             })
             .error(function(error) {
-
                 $scope.alertLoginError = true;
                 $scope.loginErrrMsg = error;
             })
-
     }
+
     $scope.change = function() {
         $scope.alertLoginError = false;
     }

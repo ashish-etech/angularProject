@@ -13,25 +13,11 @@ app.factory('getDataFactory', function($http, configuration) {
                 })
                 .error(function(error) {
                     return error;
-
                 })
         },
-        fetch: function(api) {
-            return $http({
-                    method: 'GET',
-                    url: (configuration.apihost + api),
 
-                })
-                .success(function(response) {
 
-                    return response;
-                })
-                .error(function(error) {
-                    return error;
-
-                })
-        },
-        getData: function(api) {             
+        getData: function(api) {
             return $http({
                     method: 'GET',
                     url: (configuration.apihost + api),
@@ -44,6 +30,7 @@ app.factory('getDataFactory', function($http, configuration) {
                     return error;
                 })
         }
+
     }
 
 });

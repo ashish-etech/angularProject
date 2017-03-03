@@ -1,13 +1,16 @@
-<div class="container-fluid">
-    <div class="container contstyle">
+
+    <div class="col-md-12 contstyle"><div class="row">
+    <div class="col-lg-10 col-md-offset-1">
         <center><h2>Registered User Data</h2></center>
-        <div class="col-md-3" id="btnDiv">
+        <div class="col-md-0" id="btnDiv">
             <button  ng-click="logOut()" class="btn btn-primary">Log Out <span class="fa fa-arrow-right"></span> </button>
         </div>
-        <div class="col-md-3" id="searchDiv">
+        <div class="col-md-0" id="searchDiv">
             <input  type="text" class="form-control" ng-model="search" placeholder="Search Here" ng-change="change()"/><br>
-        </div>
-        <div class="col-md-12" >
+        </div></div></div>
+        <div class="row">
+        <div class="col-lg-10 col-md-offset-1">
+        <div id="tableId">
         <table class="table">
             <tr class="success">
                 <th ng-click="sort('firstname')">First Name 
@@ -39,7 +42,7 @@
                 <tr ng-show="(employees |filter:search).length == 0" >
                     <td colspan="4" id="notFound" class="alert alert-danger"><strong>Sorry !!</strong> Data Not Found</td>
                 </tr>
-        </table>
+        </table></div>
         <center>
             <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)">
             </dir-pagination-controls>
