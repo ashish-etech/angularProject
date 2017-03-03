@@ -1,0 +1,51 @@
+
+    <div class="col-md-12 contstyle"><div class="row">
+    <div class="col-lg-10 col-md-offset-1">
+        <center><h2>Registered User Data</h2></center>
+        <div class="col-md-0" id="btnDiv">
+            <button  ng-click="logOut()" class="btn btn-primary">Log Out <span class="fa fa-arrow-right"></span> </button>
+        </div>
+        <div class="col-md-0" id="searchDiv">
+            <input  type="text" class="form-control" ng-model="search" placeholder="Search Here" ng-change="change()"/><br>
+        </div></div></div>
+        <div class="row">
+        <div class="col-lg-10 col-md-offset-1">
+        <div id="tableId">
+        <table class="table">
+            <tr class="success">
+                <th ng-click="sort('firstname')">First Name 
+                    <span ng-show="myOrderBy === 'firstname'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
+                </th>
+                <th ng-click="sort('lastname')">Last Name 
+                    <span ng-show="myOrderBy === 'lastname'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
+                </th>
+                <th ng-click="sort('username')">Username
+                    <span ng-show="myOrderBy === 'username'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
+                </th>
+                <th ng-click="sort('email')">Email 
+                    <span ng-show="myOrderBy === 'email'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
+                </th>                
+            </tr>
+
+                <tr dir-paginate="employee in employees|itemsPerPage:10 | filter : search" current-page="currentPage" total-items="count" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td>{{employee.firstname}}</td>
+                    <td>{{employee.lastname}}</td>                    
+                    <td>{{employee.username}}</td>
+                    <td>{{employee.email}}</td>
+                </tr>
+                
+                <tr ng-show="alerterror" class="alert alert-danger" style="font-size:20px;">
+                    <th colspan="12">
+                        <center>{{tableerrmsg}}</center>
+                    </th>
+                </tr>
+                <tr ng-show="(employees |filter:search).length == 0" >
+                    <td colspan="4" id="notFound" class="alert alert-danger"><strong>Sorry !!</strong> Data Not Found</td>
+                </tr>
+        </table></div>
+        <center>
+            <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)">
+            </dir-pagination-controls>
+        </center>
+    </div>
+</div>
