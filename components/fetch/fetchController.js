@@ -6,14 +6,15 @@ app.controller("fetchDataController", function($scope, $state, getDataFactory, $
     $scope.countClickOnSort = 0;
     $scope.tableData = function() {
         url = '/user/list/' + $scope.pageNo;
-        getDataFactory.getData(url).success(function(response) {
-                $scope.employees = response.data;
-                $scope.count = response.count;
-            })
-            .error(function(error) {
-                $scope.alerttableerror = true;
-                $scope.tableerrmsg = error;
-            });
+        getDataFactory.getData(url).get().$promise
+            .then(function(response) {
+                    $scope.employees = response.data;
+                    $scope.count = response.count;
+                },
+                function(error) {
+
+                }
+            )
     }
     $scope.pageChanged = function(value) {
         $scope.pageNo = value;
@@ -21,17 +22,18 @@ app.controller("fetchDataController", function($scope, $state, getDataFactory, $
             $scope.tableData();
         } else {
             url = '/user/sort/' + $scope.sortby + '/' + $scope.order + '/' + $scope.pageNo;
-            getDataFactory.getData(url)
-                .success(function(response) {
-                    $scope.employees = response.data;
-                })
-                .error(function(error) {
-                    $scope.alerterror = true;
-                    $scope.errmsg = error;
-                })
+            getDataFactory.getData(url).get().$promise
+                .then(function(response) {
+                        $scope.employees = response.data
+                    },
+                    function(error) {
+                        $scope.alerterror = true;
+                        $scope.errmsg = error;
+                    }
+                )
         }
-    };
 
+    };
     $scope.sort = function(data) {
         $scope.sortby = data;
         $scope.myOrderBy = data;
@@ -40,26 +42,29 @@ app.controller("fetchDataController", function($scope, $state, getDataFactory, $
             $scope.order = 'asc';
             $scope.reverse = false;
             url = '/user/sort/' + $scope.sortby + '/' + $scope.order + '/' + $scope.pageNo;
-            getDataFactory.getData(url)
-                .success(function(response) {
-                    $scope.employees = response.data;
-                })
-                .error(function(error) {
-                    $scope.alerterror = true;
-                    $scope.errmsg = error;
-                })
+            getDataFactory.getData(url).get().$promise
+                .then(function(response) {
+                        $scope.employees = response.data;
+                    },
+                    function(error) {
+                        $scope.alerterror = true;
+                        $scope.errmsg = error;
+                    }
+                )
         } else {
             $scope.order = 'desc';
             $scope.reverse = true;
             url = '/user/sort/' + $scope.sortby + '/' + $scope.order + '/' + $scope.pageNo;
-            getDataFactory.getData(url)
-                .success(function(response) {
-                    $scope.employees = response.data;
-                })
-                .error(function(error) {
-                    $scope.alerterror = true;
-                    $scope.errmsg = error;
-                })
+            getDataFactory.getData(url).get().$promise
+                .then(function(response) {
+                        $scope.employees = response.data;
+                    },
+                    function(error) {
+                        $scope.alerterror = true;
+                        $scope.errmsg = error;
+                    }
+                )
+
         }
     };
     $scope.tableData();

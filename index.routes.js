@@ -1,4 +1,4 @@
-var app = angular.module("angularForm", ['ui.router', 'ngStorage', 'angularUtils.directives.dirPagination']);
+var app = angular.module("angularForm", ['ui.router', 'ngStorage', 'angularUtils.directives.dirPagination', 'ngResource']);
 app.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/login');

@@ -8,20 +8,20 @@ app.controller("registrationController", function($scope, $http, getDataFactory,
     }
     $scope.submit = function(data) {
         url = "/user/register";
-        getDataFactory.sendData(data, url)
-            .success(function(response) {
-                $scope.alertsuccess = true;
-
-                $scope.form.$setPristine();
-                $timeout(function() {
-                    $scope.alertsuccess = false;
-                    $scope.user = {};
-                    $state.go('login');
-                }, 3000)
-            })
-            .error(function(error) {
-                $scope.alerterror = true;
-                $scope.errmsg = error;
-            })
+        getDataFactory.sendData(url).save(data).$promise
+            .then(function(response) {
+                    $scope.alertsuccess = true;
+                    $scope.form.$setPristine();
+                    $timeout(function() {
+                        $scope.alertsuccess = false;
+                        $scope.user = {};
+                        $state.go('login');
+                    }, 3000)
+                },
+                function(error) {
+                    $scope.alerterror = true;
+                    $scope.errmsg = error;
+                }
+            )
     }
 })
