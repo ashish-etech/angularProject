@@ -7,21 +7,19 @@ app.controller("registrationController", function($scope, $http, getDataFactory,
         $scope.alerterror = false;
     }
     $scope.submit = function(data) {
-        url = "/user/register";
-        getDataFactory.sendData(data, url)
-            .success(function(response) {
+        url = '/user/register';
+        getDataFactory.sendData(url).save(data).$promise
+            .then(function(response) {
                 $scope.alertsuccess = true;
-
                 $scope.form.$setPristine();
                 $timeout(function() {
                     $scope.alertsuccess = false;
                     $scope.user = {};
                     $state.go('login');
                 }, 3000)
-            })
-            .error(function(error) {
+            },function(error) {
                 $scope.alerterror = true;
-                $scope.errmsg = error;
+                $scope.errmsg =error.status+'!   '+ error.statusText;
             })
     }
 })
