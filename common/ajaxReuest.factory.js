@@ -1,36 +1,13 @@
 var app = angular.module("angularForm");
-app.factory('getDataFactory', function($http, configuration) {
+app.factory('getDataFactory', function(configuration, $resource) {
     return {
-        sendData: function(data, api) {
-            return $http({
-                    method: 'POST',
-                    url: (configuration.apihost + api),
-                    data: data,
-                    header: { 'Content - Type': 'text/html' }
-                })
-                .success(function(response) {
-                    return response;
-                })
-                .error(function(error) {
-                    return error;
-                })
-        },
-
-
-        getData: function(api) {
-            return $http({
-                    method: 'GET',
-                    url: (configuration.apihost + api),
-                    header: { 'Content - Type': 'text/html' }
-                })
-                .success(function(response) {
-                    return response;
-                })
-                .error(function(error) {
-                    return error;
-                })
+        sendData:function(url){
+            console.log(url)
+            return $resource(configuration.apihost + url,{})
+        },                            
+        getData: function(url) {    
+        console.log(url)         
+            return $resource(configuration.apihost + url,{})                
         }
-
     }
-
 });
