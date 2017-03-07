@@ -1,4 +1,4 @@
-var app = angular.module("angularForm", ['ui.router','ngResource', 'ngStorage', 'angularUtils.directives.dirPagination']);
+var app = angular.module("angularForm", ['ui.router', 'ngStorage', 'angularUtils.directives.dirPagination', 'ngResource']);
 app.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/login');
@@ -19,5 +19,4 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'components/fetch/fetch.html',
             controller: 'fetchDataController',
         })
-        
 })
