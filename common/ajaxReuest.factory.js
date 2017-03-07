@@ -1,16 +1,16 @@
 var app = angular.module("angularForm");
-
-app.factory("getDataFactory", function($resource, configuration) {
-
+app.factory('getDataFactory', function(configuration, $resource) {
     return {
-
-        getData: function(url) {
-
-            return $resource(configuration.apihost + url)
+        sendData:function(url){
+            console.log(url)
+            return $resource(configuration.apihost + url,{})
+        },                            
+        getData: function(url) {    
+        console.log(url)         
+            return $resource(configuration.apihost + url,{})                
         },
-        sendData: function(url) {
-
-            return $resource(configuration.apihost + url)
-        },
+        searchData:function(){
+            return $resource(configuration.apihost + '/user/search/:keyword',{keyword:'@keyword'})
+        }
     }
 });
