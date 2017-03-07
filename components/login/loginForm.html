@@ -1,0 +1,23 @@
+<div class="modal-dialog">
+    <div class="col-sm-6 col-sm-offset-1">
+        <center>
+            <h3>User Login</h3></center>
+       <!--  <div ng-show="alertloginsuccess" class="alert alert-success">{{successmsg }}</div> -->
+        <div ng-show="alertLoginError" class="alert alert-danger"> {{loginErrrMsg}}</div>
+        <form name="form" ng-submit="login(user)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : form.user_name.$invalid && !form.user_name.$pristine }">
+                <label for="firstName">User Name</label>
+                <input type="text" class="form-control" name="user_name" ng-model="user.user_name" ng-change="change()" required>
+                <span ng-show="form.user_name.$dirty && form.user_name.$error.required" class="help-block">User name is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : form.password.$invalid && !form.password.$pristine }">
+                <label for="password"> Password</label>
+                <input type="text" class="form-control" name="password" ng-model="user.password" ng-change="change()" required>
+                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+            </div>
+            <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">Login <span class="fa fa-arrow-right"></span> </button>
+            <a ui-sref="register" class="pull-right padding">New User</a>
+        </form>
+        </form>
+    </div>
+</div>
