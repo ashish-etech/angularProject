@@ -41,11 +41,16 @@
                             <center>{{tableerrmsg}}</center>
                         </th>
                     </tr>
-                   
+                    <tr ng-show="sessionExp" class="alert alert-danger" style="font-size:10px;">
+                        <th colspan="12">
+                            <center>Session Expires! Please login again.     <a ui-sref="login"> click to login</a></center>
+                        </th>
+                    </tr>
+                                      
                 </table>
             </div>
             <center>
-                <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)">
+                <dir-pagination-controls ng-hide="alerterror" boundary-links="true" on-page-change="pageChanged(newPageNumber)">
                 </dir-pagination-controls>
             </center>
         </div>

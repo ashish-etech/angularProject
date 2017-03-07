@@ -14,7 +14,7 @@ app.factory("getDataFactory", function(configuration, $resource) {
         },
         searchData:function(){
 
-            return $resource(configuration.apihost + '/user/search/:keyword',{keyword:'@keyword'},{method:"GET"})
+            return $resource(configuration.apihost + '/user/search/:keyword',{keyword:'@keyword'})
         }
     }
 });

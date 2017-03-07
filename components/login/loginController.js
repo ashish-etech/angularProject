@@ -1,5 +1,5 @@
 var app = angular.module("angularForm");
-app.controller("loginController", function($scope, $localStorage, $state, getDataFactory) {
+app.controller("loginController", function($scope, $localStorage, $state, getDataFactory,$sessionStorage) {
     if ($localStorage.token) {
          $state.go('fetch');
     }
@@ -19,7 +19,7 @@ app.controller("loginController", function($scope, $localStorage, $state, getDat
             })
         }
     }
-    // $scope.change = function() {
-    //     $scope.alertLoginError = false;
-    // }
+    $scope.change = function() {
+        $scope.alertLoginError = false;
+    }
 });
