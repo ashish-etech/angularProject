@@ -7,7 +7,7 @@
                 <button ng-click="logOut()" class="btn btn-primary">Log Out <span class="fa fa-arrow-right"></span> </button>
             </div>
             <div class="col-md-0" id="searchDiv">
-                <input type="text" class="form-control" ng-model="search" placeholder="Search Here" ng-change="change()" />
+                <input  type="text" class="form-control" ng-model="input" placeholder="Search Here" ng-change="change()"/>
                 <br>
             </div>
         </div>
@@ -30,7 +30,7 @@
                             <span ng-show="myOrderBy === 'email'" ng-class="{reverse: reverse,notReverse: !reverse}"></span>
                         </th>
                     </tr>
-                    <tr dir-paginate="employee in employees|itemsPerPage:10 | filter : search" current-page="currentPage" total-items="count" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <tr dir-paginate="employee in employees|itemsPerPage:10" current-page="currentPage" total-items="count" ng-class-odd="'odd'" ng-class-even="'even'">
                         <td>{{employee.firstname}}</td>
                         <td>{{employee.lastname}}</td>
                         <td>{{employee.username}}</td>
@@ -41,14 +41,18 @@
                             <center>{{tableerrmsg}}</center>
                         </th>
                     </tr>
-                    <tr ng-show="(employees |filter:search).length == 0">
-                        <td colspan="4" id="notFound" class="alert alert-danger"><strong>Sorry !!</strong> Data Not Found</td>
+                    <tr ng-show="sessionExp" class="alert alert-danger" style="font-size:10px;">
+                        <th colspan="12">
+                            <center>Session Expires! Please login again.     <a ui-sref="login"> click to login</a></center>
+                        </th>
                     </tr>
+                                      
                 </table>
             </div>
             <center>
-                <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)">
+                <dir-pagination-controls ng-hide="alerterror" boundary-links="true" on-page-change="pageChanged(newPageNumber)">
                 </dir-pagination-controls>
             </center>
         </div>
     </div>
+</div>

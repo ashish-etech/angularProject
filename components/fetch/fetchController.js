@@ -1,9 +1,11 @@
 var app = angular.module("angularForm");
-app.controller("fetchDataController", function($scope, $state, getDataFactory, $localStorage) {
+app.controller("fetchDataController", function($scope, $state, getDataFactory, $localStorage,$timeout) {
     $scope.alertTableError = false;
+    $scope.sessionExp = false;
     $scope.currentPage = 1;
     $scope.pageNo = 1;
     $scope.countClickOnSort = 0;
+    
     $scope.tableData = function() {
         url = '/user/list/' + $scope.pageNo;
         getDataFactory.getData(url).get().$promise
@@ -12,7 +14,12 @@ app.controller("fetchDataController", function($scope, $state, getDataFactory, $
                     $scope.count = response.count;
                 },
                 function(error) {
-
+                     $scope.employees=error.data;
+                    if (error.data) {
+                        $scope.employees='';   
+                        $scope.sessionExp =true;
+                        $localStorage.token='';                          
+                    }
                 }
             )
     }
@@ -67,10 +74,33 @@ app.controller("fetchDataController", function($scope, $state, getDataFactory, $
 
         }
     };
-    $scope.tableData();
+    $scope.change=function(){
+        if (!$scope.input){
+            $scope.tableData();
+        }
+        else{
+            getDataFactory.searchData().get({keyword:$scope.input}).$promise 
+            .then(function(response) {
+                $scope.alerterror = false;
+                $scope.employees = response.users;
+                $scope.count = response.count;
+            },function(error) {
+                $scope.alerterror = true;
+                $scope.employees = '';
+                $scope.tableerrmsg=error.data;                         
+            })
+        }
+    };
 
     $scope.logOut = function() {
-        $localStorage = null;
+        $localStorage.token = null;
         $state.go("login");
-    }
+    };
+    // load fetch template for first time
+    // if (!$localStorage.token) {
+    //     $state.go("login");
+    // }else{
+        $scope.tableData();
+    // };
+  
 })

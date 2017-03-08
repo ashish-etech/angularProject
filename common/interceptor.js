@@ -4,7 +4,6 @@ app.factory('Interceptor', function($localStorage) {
         request: function(config) {
             if (config.url != 'angularUtils.directives.dirPagination.template') {
                 config.url = config.url + '?accessToken=' + $localStorage.token;
-
             }
             return config;
         }
