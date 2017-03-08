@@ -12,11 +12,7 @@ app.controller("addAddressController", function($scope, getDataFactory, $timeout
                     $scope.alertAddressuccess = true;
                     $scope.addressSuccessMsg = response.messgae;
                     $scope.form.$setPristine();
-                    $timeout(function() {
-                        $scope.alertAddressuccess = false;
-                        $scope.user = {};
-                        $state.go('fetch');
-                    }, 3000)
+                    $state.go('fetch');
                 },
                 function(error) {
                     $scope.alertAddresserror = true;
