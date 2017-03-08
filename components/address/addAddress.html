@@ -1,0 +1,46 @@
+<div class="modal-dialog">
+    <div class="col-sm-6 col-sm-offset-1">
+        <center>
+            <h3>Add address</h3></center>
+        <div ng-show="alertAddressuccess" class="alert alert-success"> {{addressSuccessMsg}}</div>
+        <div ng-show="alertAddresserror" class="alert alert-danger"> {{addressErrMsg}}</div>
+        <!--  <div ng-show="alertloginsuccess" class="alert alert-success">{{successmsg }}</div> -->
+        <form name="form" ng-submit="addAddress(user)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : form.c_address.$invalid && !form.c_address.$pristine }">
+                <label for="c_address"> Current Address</label>
+                <input type="text" class="form-control" name="c_address" ng-model="user.c_address" required>
+                <span ng-show="form.c_address.$dirty && form.c_address.$error.required" class="help-block">Addresss  is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : form.p_address.$invalid && !form.p_address.$pristine }">
+                <label for="p_address"> Permanent Address</label>
+                <input type="text" class="form-control" name="p_address" ng-model="user.p_address" required>
+                <span ng-show="form.p_address.$dirty && form.p_address.$error.required" class="help-block">Addresss  is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : form.city.$invalid && !form.city.$pristine }">
+                <label for="city">City</label>
+                <input type="text" class="form-control" name="city" ng-model="user.city" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">city  is required</span>
+                <span ng-show="form.city.$error.pattern" class="help-block">Invalid City!!</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : form.state.$invalid && !form.state.$pristine }">
+                <label for="state">State</label>
+                <input type="text" class="form-control" name="state" ng-model="user.state" ng-pattern="/^[a-zA-Z\s]*$/" required>
+                <span ng-show="form.state.$dirty && form.state.$error.required" class="help-block">State  is required</span>
+                <span ng-show="form.state.$error.pattern" class="help-block">Invalid State!!</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : form.pin_code.$invalid && !form.pin_code.$pristine }">
+                <label for="pin_code">Pin Code</label>
+                <input type="text" class="form-control" name="pin_code" ng-model="user.pin_code" ng-pattern="/^([1-9])([0-9]){5}$/" required>
+                <span ng-show="form.pin_code.$dirty && form.pin_code.$error.required" class="help-block">Pin code is required</span>
+                <span ng-show="form.pin_code.$error.pattern" class="help-block">Enter valid Postal code</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : form.phone_no.$invalid && !form.phone_no.$pristine }">
+                <label for="phone_no">Phone Number</label>
+                <input type="text" class="form-control" ng-model="user.phone_no" name="phone_no" ng-pattern="/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/" required>
+                <span ng-show="form.phone_no.$dirty && form.phone_no.$error.required" class="help-block">Phone Number is required  in integer</span>
+                <span ng-show="form.phone_no.$error.pattern" class="help-block"> Please Enter the Phone no matching  pattern [+91-xxx-xxxxx || 91-xxx-xxxxx]</span>
+            </div>
+            <button type="submit" class="btn btn-success" ng-disabled="form.$invalid">Submit <span class="fa fa-arrow-right"></span> </button>
+        </form>
+    </div>
+</div>
