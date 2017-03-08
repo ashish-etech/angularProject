@@ -19,4 +19,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'components/fetch/fetch.html',
             controller: 'fetchDataController',
         })
+        .state('update', {
+            url: '/update',
+            templateUrl: 'components/address/addAddress.html',
+            controller: 'addAddressController',
+        })
+        .state('fetchaddress', {
+            url: '/address',
+            templateUrl: 'components/fetch/fetchAddress.html',
+            controller: 'fetchaddressController',
+
+        })
 })

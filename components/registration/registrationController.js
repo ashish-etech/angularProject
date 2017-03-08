@@ -20,7 +20,7 @@ app.controller("registrationController", function($scope, $http, getDataFactory,
                 },
                 function(error) {
                     $scope.alerterror = true;
-                    $scope.errmsg = error;
+                    $scope.errmsg = error.data;
                 }
             )
     }

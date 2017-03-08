@@ -1,0 +1,43 @@
+<div class="col-md-12 contstyle">
+    <div class="row">
+        <div class="col-lg-10 col-md-offset-1">
+            <center>
+                <h2>Registered User Address</h2>
+            </center>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-offset-1">
+            <div id="tableId">
+                <table class="table">
+                    <tr class="success">
+                        <th>User Name </th>
+                        <th>Current Address </th>
+                        <th>Permanent Address </th>
+                        <th>City </th>
+                        <th>State</th>
+                        <th>Pin code</th>
+                        <th>Phone No </th>
+                    </tr>
+                    <tr ng-repeat="employee in employees">
+                        <td>{{employee.user_id.username}}</td>
+                        <td>{{employee.address[0].current_address}}</td>
+                        <td>{{employee.address[0].permanent_address}}</td>
+                        <td>{{employee.city}}</td>
+                        <td>{{employee.state}}</td>
+                        <td>{{employee.pin_code}}</td>
+                        <td>{{employee.phone_no}}</td>
+                    </tr>
+                    <tr ng-show="alerterror" class="alert alert-danger" style="font-size:20px;">
+                        <th colspan="12">
+                            <center>{{tableerrmsg}}</center>
+                        </th>
+                    </tr>
+                    <tr ng-show="(employees |filter:search).length == 0">
+                        <td colspan="4" id="notFound" class="alert alert-danger"><strong>Sorry !!</strong> Data Not Found</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
